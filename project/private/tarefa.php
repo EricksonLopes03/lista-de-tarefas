@@ -8,14 +8,15 @@
         private $dataPrevistaConclusao = null;
 
 
-        public function __construct($id, $id_status, $tarefa, $dataCadastro, $dataPrevistaConclusao){
-            $this->id = $id;
-            $this->id_status = $id_status;
-            $this->tarefa = $tarefa;
-            $this->dataCadastro = $dataCadastro;
-            $this->dataPrevistaConclusao = $dataPrevistaConclusao;
+        public function __construct(){
+            // $this->id = $id;
+            // $this->id_status = $id_status;
+            // $this->tarefa = $tarefa;
+            // $this->dataCadastro = $dataCadastro;
+            // $this->dataPrevistaConclusao = $dataPrevistaConclusao;
 
         }
+
 
         public function __get($name)
         {

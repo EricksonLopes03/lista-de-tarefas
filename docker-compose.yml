@@ -14,8 +14,8 @@ services:
     ports: 
       - "3306:3306"
     volumes: 
-      - ${MYSQL_DATA_DIR-/docker/mysql/data}:/var/lib/mysql
-      - ${MYSQL_LOG_DIR-/docker/mysql/logs}:/var/log/mysql
+      - ${MYSQL_DATA_DIR-./docker/mysql/data}:/var/lib/mysql
+      - ${MYSQL_LOG_DIR-./docker/mysql/logs}:/var/log/mysql
     environment: #variaveis que serao encaminhadas para a configuracao do banco
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: demo
