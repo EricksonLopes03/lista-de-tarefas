@@ -52,3 +52,8 @@ function editar(id, descricaoTarefa, data, hora){
     
 
 }
+
+function remover(id){
+    location.href = 'tarefa_controller.php?acao=excluir&id='+id
+
+}

@@ -3,6 +3,7 @@
     require_once '../private/tarefa.php';
     require_once '../private/tarefaDAO.php';
 
+    ob_start();
    
     switch ($_GET['acao']) {
         case 'cadastrar':
@@ -37,7 +38,13 @@
             break;
 
         case 'excluir':
-            
+            $conexao = new Conexao();
+            $tarefa = new Tarefa();
+            echo $_GET['id'];
+            $tarefa->__set('id',$_GET['id']);
+            $tarefaDao = new TarefaDAO($conexao, $tarefa);
+            $tarefaDao->apagar();
+            header('location: todas_tarefas.php');
             break;
         
         default:
@@ -45,5 +52,5 @@
             break;
     }
 
-
+    ob_end_flush();
 ?>

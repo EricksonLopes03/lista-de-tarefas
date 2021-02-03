@@ -58,11 +58,11 @@ require 'tarefa_controller.php';
 										$dataFormatada->format('d/m/Y - H:i') . '<br>Status: ' . $tarefa->status ?> </div>
 									
 									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
+										<i class="fas fa-trash-alt fa-lg text-danger" onclick="remover(<?= $tarefa->id ?>)"></i>
 
 										<!-- Passando parametros para a funcao JavaScript para carregar o registro automaticamente no input -->
 										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>', '<?=$dataFormatada->format('Y-m-d') ?>' , '<?=$dataFormatada->format('H:i') ?>')"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
+										<i class="fas fa-check-square fa-lg text-success" ></i>
 									</div>
 								</div>
 
