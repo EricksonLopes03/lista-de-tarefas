@@ -68,6 +68,31 @@
             }
 
         }
+
+        public function marcarTarefaRealizada(){
+            try{
+                $query = 'update tb_tarefas set id_status = 2 where id = ?;';
+                $stmt = $this->conexao->prepare($query);
+                $stmt->bindValue(1, $this->tarefa->__get('id'));
+                $stmt->execute();
+    
+            }catch(PDOException $e){
+                print($e->getMessage());
+            }
+
+        }
+
+        public function listarTarefasPendentes(){
+
+            $query = 'select tb_tarefas.id, tarefa, data_cadastrado, data_prevista_conclusao, tb_status.status from tb_tarefas
+                join tb_status on tb_tarefas.id_status =  tb_status.id
+                where tb_tarefas.id_status = 1;';
+                $stmt = $this->conexao->prepare($query);
+                $stmt->execute();
+                $tarefas = $stmt->fetchAll(PDO::FETCH_OBJ);
+                return $tarefas;
+
+        }
         
         
     }

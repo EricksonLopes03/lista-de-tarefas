@@ -62,7 +62,7 @@ require 'tarefa_controller.php';
 
 										<!-- Passando parametros para a funcao JavaScript para carregar o registro automaticamente no input -->
 										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>', '<?=$dataFormatada->format('Y-m-d') ?>' , '<?=$dataFormatada->format('H:i') ?>')"></i>
-										<i class="fas fa-check-square fa-lg text-success" ></i>
+										<i class="fas fa-check-square fa-lg text-success" onclick="marcarTarefaRealizada(<?= $tarefa->id ?>)"></i>
 									</div>
 								</div>
 

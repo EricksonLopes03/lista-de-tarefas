@@ -27,7 +27,12 @@
             $conexao = new Conexao(); 
             $tarefaDao = new TarefaDAO($conexao, $tarefa);
             $tarefaDao->alterar();
-            header('location: todas_tarefas.php');
+            if(isset($_GET['listapendente']) && $_GET['listapendente'] == 'sim'){
+                header('location: index.php');
+            }else{
+                header('location: todas_tarefas.php');
+            }
+            
             break;
 
         case 'listar':
@@ -44,7 +49,34 @@
             $tarefa->__set('id',$_GET['id']);
             $tarefaDao = new TarefaDAO($conexao, $tarefa);
             $tarefaDao->apagar();
-            header('location: todas_tarefas.php');
+            if(isset($_GET['listapendente']) && $_GET['listapendente'] == 'sim'){
+                header('location: index.php');
+            }else{
+                 header('location: todas_tarefas.php');
+            }
+            break;
+
+        case 'marcarTarefaRealizada':   
+            $conexao = new Conexao();
+            $tarefa = new Tarefa();
+            echo $_GET['id'];
+            $tarefa->__set('id',$_GET['id']);
+            $tarefaDao = new TarefaDAO($conexao, $tarefa);
+            $tarefaDao->marcarTarefaRealizada();
+            if(isset($_GET['listapendente']) && $_GET['listapendente'] == 'sim'){
+                header('location: index.php');
+            }else{
+                header('location: todas_tarefas.php');
+            }
+            break;
+
+         case 'listarTarefasPendentes':   
+            $conexao = new Conexao();
+            $tarefa = new Tarefa();
+            $tarefa->__set('id', 1);
+            $tarefaDao = new TarefaDAO($conexao, $tarefa );
+            $tarefasPendentes = $tarefaDao->listarTarefasPendentes();
+            //header('location: index.php');
             break;
         
         default:

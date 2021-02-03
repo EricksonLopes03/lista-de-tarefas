@@ -1,8 +1,13 @@
-function editar(id, descricaoTarefa, data, hora){
+function editar(id, descricaoTarefa, data, hora, listarpendente){
     //CRIANDO UM FORMULÁRIO PARA A EDIÇÃO DE CADA REGISTRO
 
     let form = document.createElement('form') //formulario
-    form.action = 'tarefa_controller.php?acao=atualizar'
+    if(listarpendente){
+        form.action = 'tarefa_controller.php?listapendente=sim&acao=atualizar'
+    }else{
+        form.action = 'tarefa_controller.php?acao=atualizar'
+    }
+    
     form.method = 'post'
 
     let inputTarefa = document.createElement('input') //input para tarefa
@@ -53,7 +58,21 @@ function editar(id, descricaoTarefa, data, hora){
 
 }
 
-function remover(id){
-    location.href = 'tarefa_controller.php?acao=excluir&id='+id
+function remover(id, listarpendente){
+    if(listarpendente){
+        location.href = 'tarefa_controller.php?listapendente=sim&acao=excluir&id='+id
+    }else{
+        location.href = 'tarefa_controller.php?acao=excluir&id='+id
+    }
 
 }
+
+function marcarTarefaRealizada(id, listarpendente){
+    if(listarpendente){
+        location.href = 'tarefa_controller.php?listapendente=sim&acao=marcarTarefaRealizada&id='+id
+    }else{
+        location.href = 'tarefa_controller.php?acao=marcarTarefaRealizada&id='+id
+    }
+}
+
+
