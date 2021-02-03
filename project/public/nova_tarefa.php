@@ -1,4 +1,5 @@
-<html>
+
+<html lang="pt-br">
 
 <head>
 	<meta charset="utf-8" />
@@ -55,7 +56,7 @@
 									<label>Descrição da tarefa:</label>
 									<input type="text" class="form-control" id="tarefa" name="tarefa" placeholder="Exemplo: Lavar o carro">
 									<label>Data prevista para conclusão da tarefa:</label>
-									<input type="date" id="data" name="data" class="form-control">
+									<input type="date" id="data" name="data" min="" class="form-control">
 									<label>Hora prevista para conclusão da tarefa:</label>
 									<input type="time" id="hora" name="hora" class="form-control">
 								</div>

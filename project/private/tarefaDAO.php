@@ -25,14 +25,11 @@
             
         }
         public function listar(){
-            $query = 'select tarefa, data_cadastrado, data_prevista_conclusao, tb_status.status from tb_tarefas
+            $query = 'select tb_tarefas.id, tarefa, data_cadastrado, data_prevista_conclusao, tb_status.status from tb_tarefas
             join tb_status where tb_tarefas.id_status =  tb_status.id;';
             $stmt = $this->conexao->prepare($query);
             $stmt->execute();
             $tarefas = $stmt->fetchAll(PDO::FETCH_OBJ);
-            // echo '<pre>';
-            // print_r($tarefas);
-            // echo '</pre>';
             return $tarefas;
 
         }
