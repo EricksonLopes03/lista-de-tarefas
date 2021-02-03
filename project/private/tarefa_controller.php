@@ -17,7 +17,16 @@
             break;
             
         case 'atualizar':
-            
+
+            $tarefa = new Tarefa();
+            $tarefa->__set('id',$_POST['id']);
+            $tarefa->__set('tarefa',$_POST['tarefa']);
+            $stringData = $_POST['data'] . ' ' . $_POST['hora'] . ':00'; //criando uma data compativel com o DateTime do MySQL
+            $tarefa->__set('dataPrevistaConclusao', $stringData);      
+            $conexao = new Conexao(); 
+            $tarefaDao = new TarefaDAO($conexao, $tarefa);
+            $tarefaDao->alterar();
+            header('location: todas_tarefas.php');
             break;
 
         case 'listar':

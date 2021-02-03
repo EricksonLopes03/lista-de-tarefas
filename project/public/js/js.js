@@ -2,7 +2,7 @@ function editar(id, descricaoTarefa, data, hora){
     //CRIANDO UM FORMULÁRIO PARA A EDIÇÃO DE CADA REGISTRO
 
     let form = document.createElement('form') //formulario
-    form.action = '#'
+    form.action = 'tarefa_controller.php?acao=atualizar'
     form.method = 'post'
 
     let inputTarefa = document.createElement('input') //input para tarefa
@@ -28,10 +28,10 @@ function editar(id, descricaoTarefa, data, hora){
     inputId.name = 'id'
     inputId.value = id
 
-    let btn = document.createElement('form') //botao submit
+    let btn = document.createElement('button') //botao submit
     btn.type = 'submit'
     btn.className = 'btn btn-primary'
-    btn.innerHTML = 'Salvar Alterações'
+    btn.innerHTML = 'Salvar alterações'
     
 
     //adicionando elementos dentro do form
