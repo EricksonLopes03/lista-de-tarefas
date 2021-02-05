@@ -32,7 +32,7 @@
 			<div class="row">
 				<div class="col-md-3 menu">
 					<ul class="list-group">
-						<li class="list-group-item active"><a href="#">Tarefas pendentes</a></li>
+						<li class="list-group-item active"><a href="#">Tarefas pendentes/atrasadas</a></li>
 						<li class="list-group-item"><a href="nova_tarefa.php">Nova tarefa</a></li>
 						<li class="list-group-item"><a href="todas_tarefas.php">Todas tarefas</a></li>
 					</ul>
@@ -46,15 +46,18 @@
 								<hr />
 
 								<?php foreach ($tarefasPendentes as $tarefa) {
+								$dataAtual = new DateTime('NOW');
 								//convertendo data para um objeto DateTime para manipular o formato
 								$dataFormatada = DateTime::createFromFormat('Y-m-d H:i:s', $tarefa->data_prevista_conclusao);
 							?>
 
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9" id="tarefa_<?= $tarefa->id ?>"> 
+								<div class="row mb-3 d-flex align-items-center tarefa ">
+
+									<!-- Teste para aplicar um estilo diferente para as tarefas em atraso -->
+									<div class="col-sm-9 <?= $dataAtual >  $dataFormatada? 'tarefa-pendente' : '' ?>" id="tarefa_<?= $tarefa->id ?>"> 
 
 										<?= 'Tarefa: ' . $tarefa->tarefa .
-										'<br> Data limite: ' .
+										'<br> Data e hora limite: ' .
 										$dataFormatada->format('d/m/Y - H:i') . '<br>Status: ' . $tarefa->status ?> </div>
 									
 									<div class="col-sm-3 mt-2 d-flex justify-content-between">

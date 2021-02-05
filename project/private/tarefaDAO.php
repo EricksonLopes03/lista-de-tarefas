@@ -85,12 +85,27 @@
         public function listarTarefasPendentes(){
 
             $query = 'select tb_tarefas.id, tarefa, data_cadastrado, data_prevista_conclusao, tb_status.status from tb_tarefas
-                join tb_status on tb_tarefas.id_status =  tb_status.id
-                where tb_tarefas.id_status = 1;';
-                $stmt = $this->conexao->prepare($query);
-                $stmt->execute();
-                $tarefas = $stmt->fetchAll(PDO::FETCH_OBJ);
-                return $tarefas;
+            join tb_status on tb_tarefas.id_status =  tb_status.id
+            where tb_tarefas.id_status = 1 or tb_tarefas.id_status = 3;';
+            $stmt = $this->conexao->prepare($query);
+            $stmt->execute();
+            $tarefas = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $tarefas;
+
+        }
+
+        public function atualizarStatusTarefa(){
+            $tarefas = $this->listar();
+            foreach ($tarefas as $tarefa) {
+                $dataPrevista = DateTime::createFromFormat('Y-m-d H:i:s', $tarefa->data_prevista_conclusao);
+                $dataAtual = new DateTime('NOW');
+                if( $dataAtual > $dataPrevista){
+                    $query = 'update tb_tarefas set id_status = 3 where id = ?;';
+                    $stmt = $this->conexao->prepare($query);
+                    $stmt->bindValue(1, $tarefa->id);
+                    $stmt->execute();
+                }
+            }
 
         }
         

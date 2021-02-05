@@ -4,7 +4,10 @@
     require_once '../private/tarefaDAO.php';
 
     ob_start();
-   
+    $tarefa = new Tarefa();
+    $conexao = new Conexao(); 
+    $tarefaDao = new TarefaDAO($conexao, $tarefa);
+    $tarefaDao->atualizarStatusTarefa();
     switch ($_GET['acao']) {
         case 'cadastrar':
             $tarefa = new Tarefa();
